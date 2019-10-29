@@ -4,6 +4,22 @@ import java.util.*;
 
 public class codesTree {
 	
+	private int currentIndex;
+	private Node NYT;
+	private Node root;
+	
+	
+	public codesTree() {
+		this.NYT = new Node();
+		this.NYT.setOccurences(0);
+		this.NYT.setOrder(256);
+		this.NYT.setSymbol(null);
+		
+		this.root = this.NYT;
+		
+		this.currentIndex = 256;
+	}
+	
 	private class Node{
 		
 		
