@@ -2,22 +2,45 @@ package adaptiveHuffman;
 import java.util.*;
 
 
-public class codesTree {
+public class CodesTree {
 	
 	private int currentIndex;
 	private Node NYT;
-	private Node root;
+	public Node root;
+	private HashMap<Integer, ArrayList<Node>> blocks;
 	
-	
-	public codesTree() {
+	public CodesTree() {
 		this.NYT = new Node();
 		this.NYT.setOccurences(0);
-		this.NYT.setOrder(256);
+		this.NYT.setOrder(currentIndex);
+		currentIndex--;
 		this.NYT.setSymbol(null);
 		
 		this.root = this.NYT;
 		
 		this.currentIndex = 256;
+	}
+	
+	
+	public Node splitNYT(Node newNode) {
+		Node currentNode = root;
+		while(!currentNode.isNYT()) {
+			currentNode = currentNode.left;
+		}
+		
+		currentNode.right = newNode;
+		currentNode.right.order = currentIndex;
+		currentNode.right.parent = currentNode;
+		currentIndex--;
+		
+		currentNode.occurences++;
+		
+		currentNode.left = new Node();
+		currentNode.left = NYT;
+		currentNode.left.parent = currentNode;
+		currentNode.order = currentIndex;
+		currentIndex--;
+		return currentNode.right;
 	}
 	
 	private class Node{
@@ -31,6 +54,18 @@ public class codesTree {
 		private int order;
 		private Character symbol;
 		
+		public Node() {
+			left = null;
+			right = null;
+			parent = null;
+			occurences = 0;
+			symbol = null;
+		}
+		
+		public Node(Character value) {
+			symbol = value;
+			occurences = 1;
+		}
 		
 		public boolean isNYT() {return this.occurences == 0;}
 		public boolean isInternal() {return this.symbol == null && this.occurences != 0;}
@@ -42,11 +77,19 @@ public class codesTree {
 		public void setOrder(int value) {this.order = value;}
 		
 		public int getSymbol() {return this.symbol;}
-		public void setSymbol(char value) {this.symbol = value;}
+		public void setSymbol(Character value) {this.symbol = value;}
 		
 		public void increaseOccurences() {this.occurences++;}
 		
 		
 	}
-	public Node root;
+	
+	public String getCode(Character c) {
+		return null;
+	}
+	
+	public void update(Character c) {
+		
+	}
+	
 }
