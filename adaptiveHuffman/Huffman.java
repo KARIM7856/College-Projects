@@ -1,12 +1,13 @@
 package adaptiveHuffman;
 import java.util.ArrayList;
+
 import java.util.Map;
 import java.util.HashMap;
 public class Huffman {
-	private ArrayList<Character> characters;
-	private Map<Character, String> shortCodes;
 	
-	CodesTree tree;
+	public HashMap<Character, String> shortCodes;
+	
+	public CodesTree tree;
 	
 	
 	public String compress(String message) {
@@ -14,11 +15,18 @@ public class Huffman {
 		String result = "";
 		
 		for(int i = 0; i < message.length(); i++) {
-			if(i == 0) 
+			if(i == 0) {
 				result += shortCodes.get(message.charAt(i));
+				tree.root = tree.update(message.charAt(i)); 
+				continue;
+				
+				
+				
+				
+			}
 			
-			else if(!characters.contains(message.charAt(i))) {
-				result += "0";
+			else if(!tree.getNodes().containsKey(message.charAt(i))) {
+				result += tree.getCode(null);
 				result += shortCodes.get(message.charAt(i));
 				
 			}
