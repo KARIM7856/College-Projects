@@ -191,13 +191,24 @@ public class CodesTree {
 						
 					}
 					else if(current.isInternal()) {
+						blocks.get(current.getOccurences()).remove(current);
 						current.setOccurences(current.left.getOccurences()
 								+ current.right.getOccurences());
+						
+						if(!blocks.containsKey(current.getOccurences()))
+							blocks.put(current.getOccurences(), new ArrayList<Node>());
+						
+						blocks.get(current.getOccurences()).add(current);
 					}
 					else if (!current.isInternal()) {
-						
+						blocks.get(current.getOccurences()).remove(current);
 						
 						current.increaseOccurences();
+						
+						if(!blocks.containsKey(current.getOccurences()))
+							blocks.put(current.getOccurences(), new ArrayList<Node>());
+						
+						blocks.get(current.getOccurences()).add(current);
 					}
 					
 			}
@@ -226,9 +237,9 @@ public class CodesTree {
 			current = current.parent;
 		}
 		
-		System.out.println("A : " + this.getCode('A'));
-		System.out.println("B : " + this.getCode('B'));
-		System.out.println("C : " + this.getCode('C'));
+		//System.out.println("A : " + this.getCode('A'));
+		//System.out.println("B : " + this.getCode('B'));
+		//System.out.println("C : " + this.getCode('C'));
 
 		
 		return current;
