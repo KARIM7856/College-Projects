@@ -5,12 +5,15 @@ public class AS {
 	public static void main(String[] args) {
 
 		Scanner in = new Scanner(System.in);
+		int ans;
 		int numOfChar;
 		char letter;
-		Double prob;
+		Double prob = 0.0;
+		Double prob2 = 0.0;
 		String word;
 		ArrayList <Character> arrayletter = new ArrayList <Character> ();
 		ArrayList <Double> probability = new ArrayList <Double>();
+		
 		System.out.println("enter number of characters");
 		numOfChar = in.nextInt();
 		System.out.println("enter letter and probability");
@@ -19,35 +22,11 @@ public class AS {
 			arrayletter.add(letter);
 			prob = in.nextDouble();
 			probability.add(prob);
-		}
+			}
+		
 		ArrayList <Double> newProbab = new ArrayList <Double>();
 		newProbab.add(0.0);
-		ArrayList <Character> checkChar = new ArrayList <Character>();
-		System.out.println("enter a word to compress");
-		Double prob2 = 0.0;
-		word = in.next();
 		for(int i = 0 ; i < probability.size() ; i++) {
-			/*int pos = arrayletter.indexOf(word.charAt(i));
-			letter = arrayletter.get(pos);
-			prob = probability.get(pos);
-			if(i == 0) {
-				prob2 += prob;
-				newProbab.add(prob);
-				checkChar.add(letter);
-			}
-			else if(!checkChar.contains(letter)) {
-				 pos = arrayletter.indexOf(word.charAt(i-1));
-				 prob2 += prob;
-				 newProbab.add(prob2);
-				 checkChar.add(letter);
-			}
-			else if(checkChar.contains(letter)) {
-			    pos = arrayletter.indexOf(word.charAt(i));
-				prob = probability.get(pos);
-				newProbab.add(prob);
-				checkChar.add(letter);
-			}
-			*/
 			prob = probability.get(i);
 			if(i == 0) {
 				prob2 += prob;
@@ -57,17 +36,41 @@ public class AS {
 				prob2 += prob;
 				newProbab.add(prob2);
 			}
-			
-			
 		}
-		
-		Compress code = new Compress();
-		
-		code.compress(word, newProbab, arrayletter);
-		
-		
 
+			
+		System.out.println("***************************************************");
+		System.out.println("1.Compress");
+		System.out.println("2.Decompress");
+		ans = in.nextInt();
+			
+		if(ans == 1) {
+			System.out.println("enter a word to compress");
+			word = in.next();
+			Compress code = new Compress();
+			ArrayList <Sequence> ARcode = code.compress(word, newProbab, arrayletter);
+			
+			int i = 0;
+			for(Sequence s : ARcode) {
+				System.out.println("range = "+ s.getRange());
+				System.out.println("lower(" + word.charAt(i) + ")" + s.getLower());
+				System.out.println("upper(" + word.charAt(i) + ")" + s.getUpper());
+				System.out.println("***************************************************");
+				i++;
+			}
+		}
+		else if(ans == 2) {
+			System.out.println("***************************************************");
+			System.out.println("enter Compression Code");
+			Double compressionCode = in.nextDouble();
+			System.out.println("enter number of letters");
+			int num = in.nextInt();
+			Decompress decompress = new Decompress();
+			String dcCode = decompress.decompress(num, compressionCode, newProbab, arrayletter);
+			System.out.println("the decompressed code = " + dcCode);
+		}
 	}
+		
 	
 
 }
