@@ -1,8 +1,9 @@
 import java.util.*;
+import java.io.*;
 
 public class AS {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		Scanner in = new Scanner(System.in);
 		int ans;
@@ -51,13 +52,19 @@ public class AS {
 			ArrayList <Sequence> ARcode = code.compress(word, newProbab, arrayletter);
 			
 			int i = 0;
+			Double result = 0.0;
 			for(Sequence s : ARcode) {
 				System.out.println("range = "+ s.getRange());
 				System.out.println("lower(" + word.charAt(i) + ")" + s.getLower());
 				System.out.println("upper(" + word.charAt(i) + ")" + s.getUpper());
 				System.out.println("***************************************************");
 				i++;
+				result = (s.getUpper()+s.getLower())/2;
 			}
+			Writer wr = new FileWriter("123.txt");
+			System.out.println("the compression code = " + result);
+			wr.write(String.valueOf(result));
+			wr.close();
 		}
 		else if(ans == 2) {
 			System.out.println("***************************************************");
@@ -68,6 +75,9 @@ public class AS {
 			Decompress decompress = new Decompress();
 			String dcCode = decompress.decompress(num, compressionCode, newProbab, arrayletter);
 			System.out.println("the decompressed code = " + dcCode);
+			Writer wr2 = new FileWriter("1234.txt");
+			wr2.write(dcCode);
+			wr2.close();
 		}
 	}
 		
