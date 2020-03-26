@@ -1,11 +1,23 @@
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.HeadlessException;
+import java.awt.Paint;
+
 import javax.swing.JTextArea;
 
-import com.ctc.wstx.cfg.OutputConfigFlags;
-import com.sun.javafx.runtime.eula.Eula;
+import org.apache.commons.collections15.Transformer;
+
+import com.sun.java.swing.plaf.windows.resources.windows;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
@@ -15,12 +27,8 @@ import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.*;
 
 public class task1Gui {
@@ -54,6 +62,7 @@ public class task1Gui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1288, 773);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,8 +110,8 @@ public class task1Gui {
 					IncidMatOutput += "\n";
 					
 				}
-				
 				String eulerPath = "";
+				
 				for(int i = 0; i < path.size(); i++) {
 					eulerPath += String.valueOf(path.get(i));
 				}
@@ -123,11 +132,18 @@ public class task1Gui {
 				// add edges to the gui graph class, using adj list.
 				
 				// note that adj[i] is a linked list, no direct access.
-				for (int i = 0; i < g.adj.length; i++) {
-					for (int j : g.adj[i]) {// all rows has same size
-						
-						guiGraph.addEdge(""+i +" " + j, i,j,EdgeType.UNDIRECTED);// first string just a name for the edge.
+				if(g.getEuler() == null) {
+					for (int i = 0; i < g.adj.length; i++) {
+						for (int j : g.adj[i]) {// all rows has same size
+							guiGraph.addEdge(""+i +" " + j, i,j,EdgeType.UNDIRECTED);// first string just a name for the edge.
+						}
 					}
+				}
+				else {
+					for(int i = 0; i < path.size()-1; i++) {
+						guiGraph.addEdge(""+path.get(i) +" " + path.get(i+1), path.get(i),path.get(i+1),EdgeType.DIRECTED);
+					}
+					guiGraph.addEdge(""+path.get(0) + " " + (path.get(path.size()-1)), path.get(0), path.get(path.size()-1), EdgeType.DIRECTED);
 				}
 				
 				// The Layout takes the graph and associate with each vertex a coordinate (2d point).
@@ -141,15 +157,32 @@ public class task1Gui {
 				// imagine the graph in a frame, setsize is how much space it will take in it, setPreffered is the fram size,
 				// i will this frame on the main gui frame
 				vs.setPreferredSize(new Dimension(600,600)); 
+				Transformer<String, Paint> edgePaint = new Transformer<String, Paint>() {
+
+				    @Override
+
+				    public Paint transform(String s) {    // s represents the edge
+				    
+				    		
+				             if (inEuler(g.getEuler(), s)){    // your condition
+				                 return Color.RED;
+				             }
+				             else {
+				                 return Color.BLACK;
+				             }
+				        }
+				    };
 				
 				// label each vertex with the to string of that vertex, in our case the integer number.
 				vs.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<>());
+				vs.getRenderContext().setEdgeFillPaintTransformer(edgePaint);
 					
 				JFrame gframe = new JFrame("Simple Graph View");
 				gframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// this line to exist when you press red button.
 				gframe.getContentPane().add(vs);
 				gframe.pack();// idk what it does :/, but it was there on the pdf that explained the library, commenting it mess things up.
 				gframe.setVisible(true);
+
 			
 
 				
@@ -166,5 +199,19 @@ public class task1Gui {
 		JLabel lblOutput = new JLabel("output");
 		lblOutput.setBounds(666, 268, 56, 16);
 		frame.getContentPane().add(lblOutput);
+	}
+	private boolean inEuler(String arrayList, String s) {
+		String rep1= "", rep2 = "";
+		
+		for(int i = 0; i < arrayList.length()-1; i++) {
+			
+			if(s.charAt(0) == arrayList.charAt(i) && s.charAt(2) == arrayList.charAt(i+1)) {
+				return true;
+			}
+			if(s.charAt(2) == arrayList.charAt(i) && s.charAt(0) == arrayList.charAt(i+1)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
