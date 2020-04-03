@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/collections-generic-4.01.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/colt-1.2.0.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/concurrent-1.3.4.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/j3d-core-1.3.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-3d-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-3d-demos-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-algorithms-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-api-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-graph-impl-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-io-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-jai-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-jai-samples-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-samples-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/jung-visualization-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/stax-api-1.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/vecmath-1.3.1.jar"/>
-	<classpathentry kind="lib" path="E:/FCI/3rd Year 2nd Term/Algorithms/Eclipse workspace/jungLibrary/wstx-asl-3.2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/collections-generic-4.01.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/colt-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/concurrent-1.3.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/j3d-core-1.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-3d-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-3d-demos-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-algorithms-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-api-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-graph-impl-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-io-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-jai-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-jai-samples-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-samples-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/jung-visualization-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/stax-api-1.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/vecmath-1.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/gkari/Dropbox/3rd Year 2nd Term/Algorithms/Tasks/task1_algoLecture_20170191/task1_algoLecture_20170191/jungLibrary/wstx-asl-3.2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

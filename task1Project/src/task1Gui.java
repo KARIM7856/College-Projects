@@ -117,9 +117,7 @@ public class task1Gui {
 				}
 				eulerPath += "\n";
 				
-				outputTextArea.setText("adjacency list:\n" +  g.toString() +
-								"\n\n" + "adjacency matrix:\n" + AdjMatrixoutput +"\n\n"+"incident matrix:\n" + IncidMatOutput +
-								 "\n\n" + "euler path:\n" + "\n\n" + eulerPath);
+				outputTextArea.setText("\n\n" + "euler path:\n" + "\n\n" + eulerPath);
 				
 				// graph class in jung library to draw.
 				Graph<Integer, String> guiGraph;
@@ -178,7 +176,7 @@ public class task1Gui {
 				vs.getRenderContext().setEdgeFillPaintTransformer(edgePaint);
 					
 				JFrame gframe = new JFrame("Simple Graph View");
-				gframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// this line to exist when you press red button.
+				gframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// this line to exist when you press red button.
 				gframe.getContentPane().add(vs);
 				gframe.pack();// idk what it does :/, but it was there on the pdf that explained the library, commenting it mess things up.
 				gframe.setVisible(true);
