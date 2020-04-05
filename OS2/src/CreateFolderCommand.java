@@ -13,8 +13,12 @@ public class CreateFolderCommand implements Command {
 
 	@Override
 	public void execute() {
-		
-
+		int errno = fileSystem.updateTreeFolder(directory);
+		 
+		 if(errno != 0)
+			 System.out.println("Directory doesn't exists");
+		 
+		 
 	}
 
 }

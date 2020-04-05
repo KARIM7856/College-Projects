@@ -1,7 +1,7 @@
 
 public class File {
-	String name;
-	int size;
+	private String name;
+	private int size;
 	
 	public File(String name, int size) {
 		super();

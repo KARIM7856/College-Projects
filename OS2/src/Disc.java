@@ -23,6 +23,7 @@ public class Disc {
 	
 	private Disc(String mode, int nBlocks) {
 		this.nBlocks = nBlocks;
+		this.remainingDiscSpace = nBlocks;
 		blocks = new boolean[nBlocks];
 		
 	}
@@ -37,6 +38,24 @@ public class Disc {
 	public static void initialize(String mode, int nBlocks) {
 		if(instance == null)
 			instance = new Disc(mode,nBlocks);
+	}
+	
+	public void alloc(int start, int size) {
+		remainingDiscSpace -= size;
+		for(int i = start; i < start+size; i++) {
+			blocks[i] = true;
+		}
+	}
+	public String getDiskStatus() {
+		return "Total Space = " + nBlocks+"\nRemaining: " + remainingDiscSpace; 
+	}
+	public void deAlloc(Integer start, Integer size) {
+		remainingDiscSpace += size;
+		
+		for(int i = start; i < start+size; i++) {
+			blocks[i]=false;
+		}
+		
 	}
 	
 	

@@ -17,7 +17,13 @@ public class CreateFileCommand implements Command {
 
 	@Override
 	public void execute() {
-		
+		 int errno = fileSystem.updateTreeFile(directory, size);
+		 
+		 if(errno != 0)
+			 System.out.println("Directory doesn't exists");
+		 
+		 memmgr.alloc(directory, size);
+		 
 
 	}
 

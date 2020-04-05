@@ -26,18 +26,33 @@ public class OperatingSystem {
 		
 		switch(cmd){
 		case "CreateFile":
-			setCommand(new CreateFileCommand(commandParser.getDirectory(), commandParser.getSize(), memmgr, fileSystem));
 			
+			setCommand(new CreateFileCommand(commandParser.getDirectory(), commandParser.getSize(), memmgr, fileSystem));
 			command.execute();
 			break;
 			
 		case "CreateDirectory":
-			setCommand(new CreateFolderCommand(commandParser.getDirectory(), memmgr, fileSystem));
 			
+			setCommand(new CreateFolderCommand(commandParser.getDirectory(), memmgr, fileSystem));
 			command.execute();
+			break;
+		case "DeleteFolder":
+			setCommand(new RemoveFolderCommand(commandParser.getDirectory(), fileSystem, memmgr));
+			command.execute();
+			break;
+		case "DiscStatus":
+			setCommand(new DiskInfoCommand());
+			command.execute();
+			break;
+		case "DisplayDiscStructure":
+			setCommand(new DisplayDiskStructureCommand(fileSystem));
+			command.execute();
+			break;
 		}
 		
+		
 	}
+	
 	public Command getCommand() {
 		return command;
 	}

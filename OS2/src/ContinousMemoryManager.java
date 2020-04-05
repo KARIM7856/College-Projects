@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class ContinousMemoryManager implements MemoryManager {
 
@@ -38,17 +39,63 @@ public class ContinousMemoryManager implements MemoryManager {
 		
 		if(freeBlockSize > size) {
 			int startNew = startOfAllocation + size;
-			int endNew = startOfAllocation + freeBlockSize;
+			int newSize = freeBlockSize - size;
 			
-			freeBlocks.add(new FreeBlock(startNew, endNew));
+			freeBlocks.add(new FreeBlock(startNew, newSize));
 		}
+		
+		Disc.getInstance().alloc(startOfAllocation, size);
 		
 		
 	}
+	
+	
 	@Override
 	public void deAlloc(String fileName) {
+		Integer startOfAllocation = allocationMap.get(fileName);
+		Integer size = sizeMap.get(fileName);
 		
+		freeBlocks.add(new FreeBlock(startOfAllocation, size));
 		
+		allocationMap.remove(fileName);
+		sizeMap.remove(fileName);
+		mergeFreeBlocks();
+		Disc.getInstance().deAlloc(startOfAllocation, size);
+		
+	}
+	
+	private void mergeFreeBlocks() {
+		for(int k = 0; k < 5; k++) {
+			for(int i = 0; i < freeBlocks.size(); i++) {
+				Stack<FreeBlock> candidates = new Stack<FreeBlock>();
+				candidates.push(freeBlocks.get(i));
+				int end = freeBlocks.get(i).getEnd();
+				for(int j = 0; j < freeBlocks.size(); j++) {
+					if(end == freeBlocks.get(j).getStartOfAllocation()) {
+						candidates.push(freeBlocks.get(j));
+						end = freeBlocks.get(j).getEnd();
+						j = 0;
+						break;
+					}
+				}
+				
+				
+					if(candidates.size() > 1) {
+					while(candidates.size() > 1) {
+						FreeBlock b1 = candidates.pop();
+						FreeBlock b2 = candidates.pop();
+						int newStart = Math.min(b1.getStartOfAllocation(), b2.getStartOfAllocation());
+						int newSize = b1.getSize() + b2.getSize();
+						
+						freeBlocks.remove(b1);
+						freeBlocks.remove(b2);
+						candidates.push(new FreeBlock(newStart, newSize));
+					}
+					freeBlocks.add(candidates.pop());
+					}
+				
+			}
+		}
 	}
 	
 	public int getFreeBlock(int size) {
@@ -84,6 +131,9 @@ public class ContinousMemoryManager implements MemoryManager {
 		}
 		public int getSize() {
 			return size;
+		}
+		public int getEnd() {
+			return startOfAllocation + size;
 		}
 		public void setSize(int size) {
 			this.size = size;
