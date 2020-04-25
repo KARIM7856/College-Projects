@@ -1,9 +1,12 @@
 
 public class CommandParser {
 	
-	String cmd;
-	String directory;
-	int size;
+	private String cmd;
+	private String directory;
+	private int size;
+	private String username;
+	private String  password;
+	private boolean[] capapilities;
 
 	public String getCmd() {
 		return cmd;
@@ -24,7 +27,7 @@ public class CommandParser {
 		this.size = size;
 	}
 	
-	public void parse(String cmdString) {
+	public void parseForFileSystem(String cmdString) {
 		String[] cmdList = cmdString.split(" ");
 		
 		cmd = cmdList[0];
@@ -38,6 +41,45 @@ public class CommandParser {
 			size = Integer.parseInt(cmdList[2]);
 		
 		
+	}
+	public void parseForSecurity(String cmdString)
+	{
+		String[] cmdList = cmdString.split(" ");
+		
+		cmd = cmdList[0];
+		
+		if(cmdList.length == 1)
+			return;
+		
+		username = cmdList[1];
+		if(cmdList.length == 2)
+			return;
+		
+		if(cmd.toLowerCase() == "grant") {
+			directory = cmdList[2];
+			capapilities = new boolean[]{cmdList[3].charAt(0)==1, cmdList[3].charAt(1) ==1};
+		}
+		else {
+			password = cmdList[2];
+		}
+			
+		
+		
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public static String parseCmd(String cmdString) {
+		return cmdString.split(" ", 2)[0];
 	}
 	
 	
