@@ -36,6 +36,7 @@ public class SecurityModule {
 		else
 		{
 			users.put(user.getUsername(), user);
+			System.out.println("User " + user.getUsername() + " is Created");
 		}
 		
 	}
@@ -48,7 +49,9 @@ public class SecurityModule {
 		}
 		else
 		{
+
 			users.remove(username);
+			System.out.println("User " + username + " is removed");
 		}
 	}
 	
@@ -68,6 +71,39 @@ public class SecurityModule {
 		}
 		
 	}
+	
+	public boolean checkCreateAuthority(String directory)
+	{
+		if(currentUser.getUsername() == defaultUser.getUsername())
+			return true;
+		
+		for(String i : currentUser.getAuthorities().keySet()) {
+			
+			if(directory.startsWith(i))
+			{
+				return currentUser.getAuthorities().get(i)[0];
+			}
+		}
+		return false;
+		
+	}
+	
+	public boolean checkDeleteAuthority(String directory)
+	{
+		if(currentUser.getUsername() == defaultUser.getUsername())
+			return true;
+		
+		for(String i : currentUser.getAuthorities().keySet()) {
+			
+			if(directory.startsWith(i))
+			{
+				return currentUser.getAuthorities().get(i)[1];
+			}
+		}
+		return false;
+		
+	}
+	
 	public static User getCurrentUser() {
 		return currentUser;
 	}

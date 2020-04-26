@@ -13,6 +13,7 @@ public class OperatingSystem {
 		this.mode = mode;
 		fileSystem = new FileSystem();
 		commandParser = new CommandParser();
+		securityModule = new SecurityModule();
 		
 		if(mode == "C") {
 			memmgr = new ContinousMemoryManager();
@@ -31,55 +32,55 @@ public class OperatingSystem {
 		
 
 		
-		switch(cmd){
-		case "CreateFile":
-			setCommand(new CreateFileCommand(commandParser.getDirectory(), commandParser.getSize(), memmgr, fileSystem));
+		switch(cmd.toLowerCase()){
+		case "createfile":
+			setCommand(new CreateFileCommand(commandParser.getDirectory(), commandParser.getSize(), memmgr, fileSystem, securityModule));
 			command.execute();
 			break;
 			
-		case "CreateDirectory":
-			setCommand(new CreateFolderCommand(commandParser.getDirectory(), memmgr, fileSystem));
+		case "createdirectory":
+			setCommand(new CreateFolderCommand(commandParser.getDirectory(), memmgr, fileSystem, securityModule));
 			command.execute();
 			break;
 			
-		case "DeleteFolder":
-			setCommand(new RemoveFolderCommand(commandParser.getDirectory(), fileSystem, memmgr));
+		case "deletefolder":
+			setCommand(new RemoveFolderCommand(commandParser.getDirectory(), fileSystem, memmgr, securityModule));
 			command.execute();
 			break;
 			
-		case "DeleteFile":
-			setCommand(new RemoveFileCommand(commandParser.getDirectory(), fileSystem, memmgr));
+		case "deletefile":
+			setCommand(new RemoveFileCommand(commandParser.getDirectory(), fileSystem, memmgr, securityModule));
 			command.execute();
 			break;
 			
-		case "DiscStatus":
+		case "fiscstatus":
 			setCommand(new DiskInfoCommand());
 			command.execute();
 			break;
 			
-		case "DisplayDiscStructure":
+		case "displaydiscstructure":
 			setCommand(new DisplayDiskStructureCommand(fileSystem));
 			command.execute();
 			break;
 			
 			//SecurityModlue
 			
-		case "CreateUser":
+		case "createuser":
 			setCommand(new CreateUserCommand(securityModule, commandParser.getUsername(), commandParser.getPassword()));
 			command.execute();
 			break;
 			
-		case "DeleteUser":
+		case "deleteuser":
 			setCommand(new DeleteUserCommand(commandParser.getUsername(), securityModule));
 			command.execute();
 			break;
 			
-		case "Login":
+		case "login":
 			setCommand(new LoginCommand(commandParser.getUsername(), commandParser.getPassword(), securityModule));
 			command.execute();
 			break;
 			
-		case "TellUser":
+		case "telluser":
 			System.out.println("Current User is: " + SecurityModule.getCurrentUser().getUsername());
 		}
 		

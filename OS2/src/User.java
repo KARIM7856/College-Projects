@@ -21,6 +21,12 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
+public HashMap<String, boolean[]> getAuthorities() {
+	return authorities;
+}
+public void setAuthorities(HashMap<String, boolean[]> authorities) {
+	this.authorities = authorities;
+}
 
 
 }

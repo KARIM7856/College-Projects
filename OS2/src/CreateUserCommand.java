@@ -12,7 +12,7 @@ public class CreateUserCommand implements Command {
 
 	@Override
 	public void execute() {
-		if(SecurityModule.getCurrentUser() != securityModule.getDefaultUser())
+		if(SecurityModule.getCurrentUser().getUsername() != securityModule.getDefaultUser().getUsername())
 		{
 			System.err.println("Only the admin user can do this.");
 			return;
